@@ -8,22 +8,94 @@
     <title>Vacation Advisor</title>
 </head>
 <body>
-    <header>
-        <h1 id=""> </h1>
+
+    <header class="center border">
+        <h1> 
+            Vacation Advisor 
+        </h1>
     </header>
-    <section id="main">
-        <div id="search">
-            <form id="city-form">
-                <label>
-                    City: 
-                    <input type="text" id="city-to-search">
-                </label>
-                <input type="submit">
+
+    <div class="flex">
+        
+        <div id="sidebar" class="center border margin">
+            <p> 
+                Input desired travel destination below: 
+            </p>
+             <form>
+                <input type="text" name="city" placeholder="Enter city name">
+                <button type="submit" class="margin">
+                    submit
+                </button>
             </form>
-        <h2> LOok at me, i am from the feature branch. o_0</h2>
+            <section id="saved-destinations" class="center border"> 
+                <p>
+                   Saved destinations 
+                </p>
+                <ul id="favorites-list" class="center margin">
+                    <!-- will need set attributes for the list in JS so the list is as type none -->
+                </ul>
+            </section>
         </div>
-        <div id="favoret"></div>
-        <div id=""></div>
+
+        <div id="data-received-view" class="margin ">
+            <div id="pictures-here" class="column margin">
+                <div id="first-image" class="border image">
+                    1 image space
+                </div>
+                <div id="second-image" class="border image">
+                    2 image space
+                </div>
+                <div id="third-image" class="border image">
+                      3 image space
+                </div>
+            </div>
+            <div id="covid-header" class="center border margin">
+                <h2>
+                    Covid statistics:
+                    <!-- i feel like it could be more beneficial to have this filled in in JS given the changing city stats
+                    subject to deletion (h2)
+                    or we could have that one be static and change update the info below (where the stats will show up)-->
+                </h2>
+            </div>
+            <div id="covid-stats-here" class="border margin ">
+                placeholder for visuals
+            </div>
+            <div id="weather-header" class="center border margin">
+                <h2> 
+                    Weather forecast
+                    <!-- i feel like it could be more beneficial to have this filled in in JS given the changing city names
+                    subject to deletion (h2)-->
+                </h2>
+                <section id="today-main">
+                </section>
+            </div>
+            <div id="eight-day-forecast" class="column2 margin">
+                <section id="day-one" class="border">
+                    day 1 
+                </section>
+                <section id="day-two" class="border">
+                    day  2
+                </section>
+                <section id="day-three" class="border">
+                    day 3
+                </section>
+                <section id="day-four" class="border">
+                    day 4
+                </section>
+                <section id="day-five" class="border">
+                    day 5
+                </section>
+                <section id="day-six" class="border">
+                    day 6
+                </section>
+                <section id="day-seven" class="border">
+                    day 7
+                </section>
+                <section id="day-eight" class="border">
+                    day 8
+                </section>
+            </div>
+        </div>
 
     </section>
     <script src="./assets/script.js"></script> 
