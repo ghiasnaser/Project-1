@@ -20,3 +20,5 @@
 // displayItems()           Displays items from local storage
 // clearStorage()           Clears items from local storage
 // 
+
+function nothing();
