@@ -1,0 +1,11 @@
+.cityPictures{
+    padding: 1%;
+}
+img.cityPictures:hover{
+    width: 500px;
+    height: 500px;
+}
+#pictures{
+    display: flex;
+    flex-direction: row;
+}
