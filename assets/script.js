@@ -21,4 +21,10 @@
 // clearStorage()           Clears items from local storage
 // 
 
-function nothing();
+
+
+
+
+
+
+
