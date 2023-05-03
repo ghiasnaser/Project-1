@@ -94,7 +94,7 @@ img.cityPictures:hover{
     background: rgba(255, 255, 255, 0.2);
     padding: 6px 30px 8px 30px;
     color: #fff;
-    border-radius: 50px;
+    border-radius: 5px;
     transition: all ease-in-out 0.4s;
   }
   
@@ -131,5 +131,8 @@ img.cityPictures:hover{
   .searchResults .icon-boxes .icon-box p {
     font-size: 15px;
     color: #716f6f;
+  }
+  button {
+    border: none;
   }
   
