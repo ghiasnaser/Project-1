@@ -1,3 +1,12 @@
+*
+{
+    padding: 0;
+    margin: 0;
+}
+html {
+    height: 100%;
+  }
+
 .cityPictures{
     padding: 1%;
 }
@@ -9,3 +18,118 @@ img.cityPictures:hover{
     display: flex;
     flex-direction: row;
 }
+
+#hero {
+    width: 100%;
+    height: 60vh;
+    background: url("./hero.jpg") center center;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+    padding: 0;
+    margin-bottom: -120px;
+  }
+  
+  #hero:before {
+    content: "";
+    background: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  #hero .container {
+    z-index: 2;
+  }
+  header {
+    background-color: rgb(103, 103, 195);
+    color: white;
+  }
+  #hero h1 {
+    margin: 0 0 10px 0;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 56px;
+    color: #fff;
+  }
+  
+  #hero h2 {
+    color: #eee;
+    margin-bottom: 50px;
+    font-size: 24px;
+  }
+  #hero h3 {
+    color: #eee;
+    margin-bottom: 50px;
+    font-size: 24px;
+  }
+  
+.searchResults {
+    padding: 0 0 30px 0;
+    position: relative;
+    z-index: 3;
+  }
+  
+  .searchResults .content {
+    padding: 30px;
+    background: #ff5821;
+    border-radius: 4px;
+    color: #fff;
+  }
+  
+  .searchResults .content h3 {
+    font-weight: 700;
+    font-size: 34px;
+    margin-bottom: 30px;
+  }
+  
+  .searchResults .content p {
+    margin-bottom: 30px;
+  }
+  
+  .searchResults .content .more-btn {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 6px 30px 8px 30px;
+    color: #fff;
+    border-radius: 50px;
+    transition: all ease-in-out 0.4s;
+  }
+  
+  .searchResults .content .more-btn i {
+    font-size: 14px;
+  }
+  
+  .searchResults .content .more-btn:hover {
+    color: #ff5821;
+    background: #fff;
+  }
+  
+  .searchResults .icon-boxes .icon-box {
+    text-align: center;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+    padding: 40px 30px;
+    width: 100%;
+  }
+  
+  .searchResults .icon-boxes .icon-box i {
+    font-size: 40px;
+    color: #ff5821;
+    margin-bottom: 30px;
+  }
+  
+  .searchResults .icon-boxes .icon-box h4 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 30px 0;
+  }
+  
+  .searchResults .icon-boxes .icon-box p {
+    font-size: 15px;
+    color: #716f6f;
+  }
+  
