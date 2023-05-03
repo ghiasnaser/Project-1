@@ -222,7 +222,7 @@ cityInputValue.addEventListener('submit', citySearch);
 function citySearch(event) {
     event.preventDefault();
 
-    const inputBox = document.getElementById('input');
+    const inputBox = document.getElementById('city-to-search');
 
     if (!inputBox.value) {
         return;
@@ -256,7 +256,7 @@ function fetchGeoInfo(city) {
 }
 
 function getCurrentWeather(lat, lon) {
-    const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${myApiKey}&units=metric`;
+    const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${myApiKey}&units=imperial`;
     
     fetch(weatherUrl)
     .then(function (response) {
@@ -303,12 +303,12 @@ function displayForecast(forecastData) {
 
     var dayEl = document.createElement('li');
     dayEl.setAttribute('style', 'list-style:none;');
-    dayEl.innerText = temperature + ' ºC';
+    dayEl.innerText = temperature + ' F';
     dayOneSection.appendChild(dayEl);
 
     var dayEl = document.createElement('li');
     dayEl.setAttribute('style', 'list-style:none;');
-    dayEl.innerText = windSpeed + ' meters/sec';
+    dayEl.innerText = windSpeed + ' miles/hour';
     dayOneSection.appendChild(dayEl);
 
     var dayEl = document.createElement('li');
@@ -345,7 +345,7 @@ for (let i=0; i < forecastData.length; i++){
 
 function getForecastData(lat, lon) {
 
-    const weatherUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${myApiKey}&units=metric`;
+    const weatherUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${myApiKey}&units=imperial`;
 
     fetch(weatherUrl)
         .then(function (response) {
