@@ -22,6 +22,9 @@
 // 
 const accessAPIKey="EaQ9t1Sjw17W6zf0jNbxcojnup5AueopgWzyReTuDfY";
 const eventsAPIKey="6K5ULLZPGGNE7POPJW7W";
+const tripAdvisorAPIKey="0A0E1A2DD5B64A41B5BA8540C9D8DA1B";
+const clientAPIID=" MzM0MDk3NzF8MTY4MzAxMDIzMi43MjgzMDk";
+const theAppSecret="635f720cbf32b9dc9216edb636426e129a80319eda0f6f48fa9692dacf60371b -";
 //const secretAPIKey="u1vEN6z6jphcPkL-SJYm0HT3wCva0eGs6Anydi2p95Y";
 const openweatherAPIKey="dac838d30631fe359fde731b09d63ae8";
 //const query = 'Chico';
@@ -32,14 +35,15 @@ const submitEl=document.getElementById("subm");
 const picutesContainer=document.getElementById("pictures");
 const cityPicutreEl=document.querySelector(".cityPictures");
 const showPicutersBtn=document.getElementById("show");
+const eventsEl=document.getElementById("eventsContainer");
 var numberOfPictures;
 var currentPictureIndex;
 var pictureArr=[];
 
 
 
-async function getPictures(event){
-    event.preventDefault();
+async function getPictures(){
+    //event.preventDefault();
     numberOfPictures=0;
     currentPictureIndex=0;
     var query=citeNameEl.value;
@@ -171,43 +175,78 @@ function displayPrevious(event){
     
  }
 
-function getHealthInfo(event){
-    //const city = 'New York';
-    event.preventDefault();
-    var query=citeNameEl.value;
-    const url = `https://api.openweathermap.org/data/2.5/air_pollution?q=${query}&appid=${openweatherAPIKey}`;
-    fetch(url)
-    .then(function(response){ 
-        return response.json()})
-    .then(function(data) {
-        console.log(data);
-        // Do something with the flu data
-        console.log(data.list[0].components.flu);
-    })
-    .catch(error => console.log(error));
-}
 
-function getEvents(event){
-    event.preventDefault();
+
+function getEvents(){
+    //event.preventDefault();
+    $(eventsEl).value="";
     var query=citeNameEl.value;
     var cityName=query.replace(/\s+/g, '+');
-   //var url="https://www.eventbriteapi.com/v3/users/me/?token=6K5ULLZPGGNE7POPJW7W";
-    //var url=`https://www.eventbriteapi.com/v3/events/search/?location.address=${cityName}&location.within=10km&sort_by=date&token=${eventsAPIKey}`;
-    //fetch(url)
-    fetch(`https://www.eventbriteapi.com/v3/events/search/?location.address=${cityName}`, {
-    headers: {
-    'Authorization': `Bearer ${eventsAPIKey}`
-    }
-    })
+    var url=`https://api.seatgeek.com/2/events?venue.city=${cityName}&client_id=${clientAPIID}`;
+    fetch(url)
     .then(function(response){
         return(response.json());
     })
     .then(function(data){
-        console.log(data);
+        if(data.events.length>0){
+            console.log(data.events);
+            displayEvents(data.events);
+        }
+        else{
+            $(eventsEl).append(`<p> there are no events will be in ${query} </p>`);
+        }
     });
 }
 
+function displayEvents(eventsArr){
+    for (var i=0;i<eventsArr.length;i++){
+        var eventDate=eventsArr[i].datetime_local;
+        var eventType= eventsArr[i].type.toUpperCase();
+        var eventTitle=eventsArr[i].short_title;
 
-submitEl.addEventListener("click",getPictures);
+        var logoImage=eventsArr[i].performers[0].image;
+        var firstPerformer=eventsArr[i].performers[0].name;
+        var SecondPerformer
+        if(eventsArr[i].performers.length>1){
+            if(eventsArr[i].taxonomies.length>1){
+            SecondPerformer=" VS "+eventsArr[i].performers[1].name;
+            }
+            else{
+                SecondPerformer=" & "+eventsArr[i].performers[1].name;
+            }
+        }
+        else{
+            SecondPerformer="";
+        }
+        //var SecondPerformerImage=eventsArr[i].performers[1].image;
+        var eventStreetAddress=eventsArr[i].venue.address;
+        var eventCityStateZIP=eventsArr[i].venue.extended_address;
+        $(eventsEl).append(`
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">${eventType} : ${eventTitle}</h3>
+                <p>${eventDate}</p>
+                <img id="wicon" src="${logoImage}">
+                <h4 class="card-text">${firstPerformer} ${SecondPerformer}</h4>
+                <h4>Event Address:</h4>
+                <p class="card-text">${eventStreetAddress}</p>
+                <p>${eventCityStateZIP}</p>
+            </div>
+        </div>
+        `);
+    }
+
+}
+
+
+function getInformation(event){
+    event.preventDefault();
+    getPictures();
+    getEvents();
+    
+}
+
+submitEl.addEventListener("click",getInformation);
+
 document.getElementById("Next").addEventListener("click",displayNext);
 document.getElementById("Previous").addEventListener("click",displayPrevious);
