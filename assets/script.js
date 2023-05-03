@@ -211,3 +211,4 @@ function getEvents(event){
 submitEl.addEventListener("click",getPictures);
 document.getElementById("Next").addEventListener("click",displayNext);
 document.getElementById("Previous").addEventListener("click",displayPrevious);
+  //kk
