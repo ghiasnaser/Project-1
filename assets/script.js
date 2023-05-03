@@ -243,6 +243,7 @@ function getInformation(event){
     event.preventDefault();
     getPictures();
     getEvents();
+    citySearch();
     
 }
 
@@ -255,11 +256,11 @@ document.getElementById("Previous").addEventListener("click",displayPrevious);
 const myApiKey = '0fffcdb9d9732daced94e2c5d89e2a50';
 const cityInputValue = document.getElementById('city-form');
 
-cityInputValue.addEventListener('submit', citySearch);
+//cityInputValue.addEventListener('submit', citySearch);
 
 
-function citySearch(event) {
-    event.preventDefault();
+function citySearch() {
+    //event.preventDefault();
 
     const inputBox = document.getElementById('city-to-search');
 
