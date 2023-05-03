@@ -44,7 +44,7 @@ img.cityPictures:hover{
     z-index: 2;
   }
   header {
-    background-color: rgb(103, 103, 195);
+    background-color:  #ff5821;
     color: white;
   }
   #hero h1 {
@@ -70,6 +70,7 @@ img.cityPictures:hover{
     padding: 0 0 30px 0;
     position: relative;
     z-index: 3;
+    
   }
   
   .searchResults .content {
@@ -77,6 +78,7 @@ img.cityPictures:hover{
     background: #ff5821;
     border-radius: 4px;
     color: #fff;
+    
   }
   
   .searchResults .content h3 {
@@ -88,26 +90,32 @@ img.cityPictures:hover{
   .searchResults .content p {
     margin-bottom: 30px;
   }
-  
-  .searchResults .content .more-btn {
+  .searchResults .content .location-input #city-to-search {
     display: inline-block;
-    background: rgba(255, 255, 255, 0.2);
+    background:white;
     padding: 6px 30px 8px 30px;
-    color: #fff;
-    border-radius: 5px;
+    color: transparent;
+    border-radius: 50px;
     transition: all ease-in-out 0.4s;
+    
+  }
+  .searchResults .content #searchBar input[type="text"] {
+    color: #000;
   }
   
-  .searchResults .content .more-btn i {
-    font-size: 14px;
+  .searchResults .content #submit {
+    font-size: 15px;
+    border-radius: 50px;
+    padding: 6px 10px;
   }
   
-  .searchResults .content .more-btn:hover {
+  .searchResults .content #submit:hover {
     color: #ff5821;
     background: #fff;
   }
+
   
-  .searchResults .icon-boxes .icon-box {
+ .searchResults .icon-boxes .icon-box {
     text-align: center;
     border-radius: 10px;
     background: #fff;
@@ -134,7 +142,21 @@ img.cityPictures:hover{
   }
   button {
     border: none;
+    background-color: transparent;
   }
+  .fetchData .dataContainer h1 {
+    font-size: 18px;
+    color: #7f6d68;
+    margin-bottom: 500px;
+  }
+  
+  .fetchData .luggagePhoto {
+    background: url("../assets/luggage.jpg") center center no-repeat;
+    background-size: 500px;
+    min-height: 500px;
+    min-width:150px;
+  }
+  
   #eventsContainer{
     display: flex;
     flex-direction: row;

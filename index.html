@@ -43,15 +43,7 @@
 
 
     <section id="main">
-        <div id="search">
-            <form class = "location-input" id="city-form">
-                <label>
-                    City: 
-                    <input type="text" id="city-to-search" placeholder="Where are you going?">
-                </label>
-                <input type="submit" id="submit">
-            </form>
-        </div>
+
 
         <div id="buttonsContainer">
             <button id="show" style="display: none;">Travelling Gallery</button>
@@ -74,33 +66,52 @@
 
         </div>
         <section id="searchResults" class="searchResults">
-        <div class="container">
+        <div class="container d-flex justify-content-end">
         <div class="row">
-        <div class="col-xl-8 col-lg-7 d-flex">
-            <div class="icon-boxes d-flex flex-column justify-content-center">
+            <div class="col-xl-4 col-lg-5" data-aos="fade-up">
+                <div class="content">
+                  <h3>How do you use Vacation Advisor?</h3>
+                  <p>
+                    First, type in a city name of your liking in the search bar. Next, our software will produce results located in the buttons below. 
+                    Click a button, and you will be shown criteria that will help you plan our next vaction.
+                  </p>
+                  <div id="searchBar">
+                    <form class="location-input" id="city-form">
+                        <label>
+                            City: 
+                            <input type="text" id="city-to-search" placeholder="Where are you going?">
+                        </label>
+                        <input class ="submit" type="submit" id="submit">
+                    
+                    </form>
+                  </div>
+                </div>
+              </div>  
+        <div class="col-xl-8 col-lg-7 d-flex align-items-stretch">
+            <div class="icon-boxes d-flex flex-column justify-content-end">
               <div class="row">
                 <div class="col-xl-3"></div>
 
-                <button class="col-xl-3 d-flex" data-aos="fade-up" data-aos-delay="100">
+                <button id="myButton" class="col-xl-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
                   <div class="icon-box mt-4 mt-xl-0">
                     <i class="bx bx-receipt"></i>
                     <h4>Pictures</h4>
-                    <p>Here are the most liked photos of your Location</p>
+                    <p>Here are the most liked photos of your location</p>
                   </div>
                 </button>
-                <button class="col-xl-3 d-flex" data-aos="fade-up" data-aos-delay="200">
+                <button class="col-xl-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
                   <div class="icon-box mt-4 mt-xl-0">
                     <i class="bx bx-cube-alt"></i>
                     <h4>Events Happening</h4>
-                    <p>Here are the things you could do in this destination!</p>
+                    <p>Things you could do in this destination!</p>
                   </div>
                 </button>
-                <div class="col-xl-3 d-flex" data-aos="fade-up" data-aos-delay="300">
+                <button class="col-xl-3 d-flex" data-aos="fade-up" data-aos-delay="300">
                   <div class="icon-box mt-4 mt-xl-0">
                     <i class="bx bx-images"></i>
                     <h4>Weather</h4>
-                    <p>Forecasted Weather for this week....</p>
-                  </div>
+                    <p>Forecasted weather for this week....</p>
+                  </button>
                 </div>
               </div>
             </div>
@@ -108,7 +119,26 @@
           </div>
           </div>
           </section>
+             
+    <section id="fetchData" class="fetchData section-bg">
+        <div class="container">
+  
+          <div class="row">
+            <div class="col-xl-5 col-lg-6 luggagePhoto d-flex justify-content-center align-items-stretch position-relative" data-aos="fade-right">
+            
+            </div>
+  
+            <div class="col-xl-7 col-lg-6 dataContainer d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
+              <h1 data-aos="fade-up">Below, you'll find what our software found based on your search</h1>
+              
+  
 
+  
+            </div>
+          </div>
+  
+        </div>
+      </section>
 
 
 

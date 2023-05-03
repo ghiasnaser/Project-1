@@ -197,6 +197,8 @@ function getEvents(){
         }
     });
 }
+const myButton = document.getElementById("myButton");
+myButton.addEventListener("click", getPictures);
 
 function displayEvents(eventsArr){
     for (var i=0;i<eventsArr.length;i++){
