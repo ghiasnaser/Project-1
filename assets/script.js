@@ -206,6 +206,8 @@ function getEvents(event){
         console.log(data);
     });
 }
+const myButton = document.getElementById("myButton");
+myButton.addEventListener("click", getPictures);
 
 
 submitEl.addEventListener("click",getPictures);
