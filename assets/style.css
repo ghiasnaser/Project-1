@@ -157,3 +157,14 @@ img.cityPictures:hover{
     min-width:150px;
   }
   
+  #eventsContainer{
+    display: flex;
+    flex-direction: row;
+}
+.card-body{
+    padding: 10px;
+    margin: 5px;
+    border: solid;
+    background-color: aqua;
+}
+
