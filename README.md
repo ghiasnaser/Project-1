@@ -29,8 +29,8 @@ The images below will display what the application looks like:
 ![weather results](/assets/images/weather-results.jpg)
 ![favorites list](/assets/images/favorites-list.jpg)
 
-Here is the deployed webpage: https://ghiasnaser.github.io/Project-1/  
-Here is the github repo link: https://github.com/ghiasnaser/Project-1.git
+Here is the deployed webpage: https://ghiasnaser.github.io/Vacation-Planner/  
+Here is the github repo link: https://github.com/ghiasnaser/Vacation-Planner
 
 ## Installations
 
