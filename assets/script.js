@@ -110,7 +110,7 @@ function setBackgroundPicture(){
 }
 
 showPicutersBtn.addEventListener("click",displayPictures);
-pictureDivEl.addEventListener("click",displayPictures);
+//pictureDivEl.addEventListener("click",displayPictures);
 
 async function displayPictures(event){
     event.preventDefault();
