@@ -239,3 +239,22 @@ img.cityPictures:hover{
   transform: scale(1.01);
     filter: drop-shadow(0 0 1rem rgb(249, 234, 149));
 }
+.deletefavorites{
+  margin-top: 2%;
+  width: 100%;
+  background-color: red;
+}
+.favoriteCityPictures:hover{
+  cursor: pointer;
+  transform: scale(1.02);
+}
+.cityName{
+  border: solid;
+  border-radius: 25px;
+  background-color: lightgoldenrodyellow;
+}
+.submit{
+  width: 85%;
+  margin-top: 1%;
+  margin-left: 11%;
+}
