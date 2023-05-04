@@ -22,7 +22,8 @@
 // 
 const accessAPIKey="EaQ9t1Sjw17W6zf0jNbxcojnup5AueopgWzyReTuDfY";
 const eventsAPIKey="6K5ULLZPGGNE7POPJW7W";
-const tripAdvisorAPIKey="0A0E1A2DD5B64A41B5BA8540C9D8DA1B";
+const openTripAPIKey="5ae2e3f221c38a28845f05b637c4300ff4f0815f5d43b69a2bb28c20";
+//const tripAdvisorAPIKey="0A0E1A2DD5B64A41B5BA8540C9D8DA1B";
 const clientAPIID=" MzM0MDk3NzF8MTY4MzAxMDIzMi43MjgzMDk";
 const theAppSecret="635f720cbf32b9dc9216edb636426e129a80319eda0f6f48fa9692dacf60371b -";
 //const secretAPIKey="u1vEN6z6jphcPkL-SJYm0HT3wCva0eGs6Anydi2p95Y";
@@ -31,19 +32,37 @@ const openweatherAPIKey="dac838d30631fe359fde731b09d63ae8";
 const count = 50;
 const citeNameEl=document.getElementById("city-to-search");
 const inputEl=document.getElementById("city-form");
-const submitEl=document.getElementById("subm");
+const submitEl=document.getElementById("submit");
 const picutesContainer=document.getElementById("pictures");
 const cityPicutreEl=document.querySelector(".cityPictures");
 const showPicutersBtn=document.getElementById("show");
+const showWeatherBtn=document.getElementById("weather");
+const showEventsBtn=document.getElementById("event");
 const eventsEl=document.getElementById("eventsContainer");
+const mainresultEL=document.getElementById("mainResult");
+const weatherEl=document.getElementById("WeatherContainer");
+const weatherDivEl=document.getElementById("weatherDiv");
+const eventDivEl=document.getElementById("eventDiv");
+const pictureDivEl=document.getElementById("showDiv");
 var numberOfPictures;
 var currentPictureIndex;
 var pictureArr=[];
 
-
+/* function getDescription(){
+    var query=citeNameEl.value;
+    fetch(`https://api.opentripmap.com/0.1/en/places/geoname?name=${query}&apikey=${openTripAPIKey}`)
+    .then(function(response){
+        return(response.json());
+    })
+    .then(function(data){
+        console.log("helloo")
+        console.log(data);
+    });
+} */
 
 async function getPictures(){
     //event.preventDefault();
+    pictureArr=[];
     numberOfPictures=0;
     currentPictureIndex=0;
     var query=citeNameEl.value;
@@ -76,25 +95,33 @@ function setBackgroundPicture(){
         }
     }
     console.log("the most liked picture is");
+    mainresultEL.value="";
     console.log(pictureArr[id]);
     url=pictureArr[id].urls.regular;
     console.log(url);
-    picutesContainer.style.backgroundImage =`url('${url}')`;
-    picutesContainer.style.backgroundSize = "cover";// to scale the image to cover the entire element
-    picutesContainer.style.backgroundRepeat = "no-repeat";//to prevent the image from repeating.
-    picutesContainer.style.width = "500px";
-    picutesContainer.style.height = "300px";
+    mainresultEL.style.backgroundImage =`url('${url}')`;
+    mainresultEL.style.backgroundSize = "cover";// to scale the image to cover the entire element
+    mainresultEL.style.backgroundRepeat = "no-repeat";//to prevent the image from repeating.
+    mainresultEL.style.width = "100vw";
+    mainresultEL.style.height = "100vh";
     showPicutersBtn.style.display="block";
+    showEventsBtn.style.display="block";
+    showWeatherBtn.style.display="block";
 }
 
 showPicutersBtn.addEventListener("click",displayPictures);
+pictureDivEl.addEventListener("click",displayPictures);
 
 async function displayPictures(event){
     event.preventDefault();
+    mainresultEL.style.display="none";
+    picutesContainer.style.display="flex";
+    eventsEl.style.display="none";
+    weatherEl.style.display="none";
     for (i=0;i<pictureArr.length;i++){
         var src = pictureArr[i].urls.regular;
         var alt = pictureArr[i].alt_description;
-        $(picutesContainer).append(`<img class="cityPictures" id="picture${i}" src="${src}" width="200" height="200" alt="${alt}" style="display: none;"/>`);
+        $(picutesContainer).append(`<img class="cityPictures" id="picture${i}" src="${src}" width="300" height="300" alt="${alt}" style="display: none;"/>`);
     }
     for (var j=currentPictureIndex; j<5 ;j++){
         document.getElementById("picture"+j).style.display="block";
@@ -127,12 +154,12 @@ function displayNext(event){
             }
             currentPictureIndex+=5;
         }
-        else{
+        /*else{
             for (var i=currentPictureIndex; i<currentPictureIndex+5; i++){
                 document.getElementById("picture"+i).style.display="block";
             }
             currentPictureIndex+=5;
-        }
+        }*/
         if (currentPictureIndex>5){
             document.getElementById("Previous").style.display="block";
         }
@@ -197,8 +224,28 @@ function getEvents(){
         }
     });
 }
+showEventsBtn.addEventListener("click",function(event){
+    event.preventDefault();
+    document.getElementById("Next").style.display="none";
+    document.getElementById("Previous").style.display="none";
+    mainresultEL.style.display="none";
+    picutesContainer.style.display="none";
+    eventsEl.style.display="flex";
+    weatherEl.style.display="none";
+});  
+
+eventDivEl.addEventListener("click",function(event){
+    event.preventDefault();
+    document.getElementById("Next").style.display="none";
+    document.getElementById("Previous").style.display="none";
+    mainresultEL.style.display="none";
+    picutesContainer.style.display="none";
+    eventsEl.style.display="block";
+    weatherEl.style.display="none";
+});  
 
 function displayEvents(eventsArr){
+    
     for (var i=0;i<eventsArr.length;i++){
         var eventDate=eventsArr[i].datetime_local;
         var eventType= eventsArr[i].type.toUpperCase();
@@ -241,6 +288,7 @@ function displayEvents(eventsArr){
 
 function getInformation(event){
     event.preventDefault();
+   // getDescription();
     getPictures();
     getEvents();
     citySearch();
@@ -252,6 +300,24 @@ submitEl.addEventListener("click",getInformation);
 document.getElementById("Next").addEventListener("click",displayNext);
 document.getElementById("Previous").addEventListener("click",displayPrevious);
 
+showWeatherBtn.addEventListener("click",function(event){
+    event.preventDefault();
+    document.getElementById("Next").style.display="none";
+    document.getElementById("Previous").style.display="none";
+    mainresultEL.style.display="none";
+    picutesContainer.style.display="none";
+    eventsEl.style.display="none";
+    weatherEl.style.display="block";
+})
+weatherDivEl.addEventListener("click",function(event){
+    event.preventDefault();
+    document.getElementById("Next").style.display="none";
+    document.getElementById("Previous").style.display="none";
+    mainresultEL.style.display="none";
+    picutesContainer.style.display="none";
+    eventsEl.style.display="none";
+    weatherEl.style.display="block";
+})
 
 const myApiKey = '0fffcdb9d9732daced94e2c5d89e2a50';
 const cityInputValue = document.getElementById('city-form');
@@ -261,7 +327,11 @@ const cityInputValue = document.getElementById('city-form');
 
 function citySearch() {
     //event.preventDefault();
-
+    document.getElementById("day-one").value="";
+    document.getElementById("day-two").value="";
+    document.getElementById("day-three").value="";
+    document.getElementById("day-four").value="";
+    document.getElementById("day-five").value="";
     const inputBox = document.getElementById('city-to-search');
 
     if (!inputBox.value) {
@@ -399,3 +469,4 @@ function getForecastData(lat, lon) {
             filterForecastData(forecastData.list);
             });
 }
+
