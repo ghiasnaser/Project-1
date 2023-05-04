@@ -1,57 +1,9 @@
-// Psuedocode
-//
-// Variables
-// const cityEl
-// const submitBtnEl
-// const favoritesEl
-// const container
-//
-//
-//
-// Functions:
-// Event listener for submit buutton
-// startApp()               Funct that reads city name from input & calls weather and health
-// getWeather()             Funct will call getGeoCode()
-// cityWeather()            Funct will get weather for specific city
-// getHealth()              Funct returns nearby health information
-// getPhoto()               Takes city name as input and returns 1 or more photos of location
-// getEvents()              Takes city name and returns nearby events
-// addFavorites()           Adds favorites as an array to local storage
-// displayItems()           Displays items from local storage
-// clearStorage()           Clears items from local storage
-
-// // Psuedocode
-//
-// Variables
-// const cityEl
-// const submitBtnEl
-// const favoritesEl
-// const container
-//
-//
-//
-// Functions:
-// Event listener for submit buutton
-// startApp()               Funct that reads city name from input & calls weather and health
-// getWeather()             Funct will call getGeoCode()
-// cityWeather()            Funct will get weather for specific city
-// getHealth()              Funct returns nearby health information
-// getPhoto()               Takes city name as input and returns 1 or more photos of location
-// getEvents()              Takes city name and returns nearby events
-// addFavorites()           Adds favorites as an array to local storage
-// displayItems()           Displays items from local storage
-// clearStorage()           Clears items from local storage
-// 
 const accessAPIKey="EaQ9t1Sjw17W6zf0jNbxcojnup5AueopgWzyReTuDfY";
 const eventsAPIKey="6K5ULLZPGGNE7POPJW7W";
 const openTripAPIKey="5ae2e3f221c38a28845f05b637c4300ff4f0815f5d43b69a2bb28c20";
-//const tripAdvisorAPIKey="0A0E1A2DD5B64A41B5BA8540C9D8DA1B";
-
 const clientAPIID=" MzM0MDk3NzF8MTY4MzAxMDIzMi43MjgzMDk";
 const theAppSecret="635f720cbf32b9dc9216edb636426e129a80319eda0f6f48fa9692dacf60371b -";
-//const secretAPIKey="u1vEN6z6jphcPkL-SJYm0HT3wCva0eGs6Anydi2p95Y";
 const openweatherAPIKey="dac838d30631fe359fde731b09d63ae8";
-//const query = 'Chico';
 const count = 50;
 const citeNameEl=document.getElementById("city-to-search");
 const inputEl=document.getElementById("city-form");
@@ -63,17 +15,66 @@ const showPicutersBtn=document.getElementById("show");
 const showWeatherBtn=document.getElementById("weather");
 const showEventsBtn=document.getElementById("event");
 const eventsEl=document.getElementById("eventsContainer");
-const mainresultEL=document.getElementById("mainResult");
+const mainresultEL=document.getElementById("main");
 const weatherEl=document.getElementById("WeatherContainer");
 const weatherDivEl=document.getElementById("weatherDiv");
 const eventDivEl=document.getElementById("eventDiv");
 const pictureDivEl=document.getElementById("showDiv");
+const addToFavoriteEl=document.getElementById("AddTofavorites");
+const editFavoriteListEl=document.getElementById("EditList");
+const favoriteListEl=document.getElementById("favorites");
 var numberOfPictures;
 var currentPictureIndex;
 var pictureArr=[];
-var isSubmit=false;
+var favoriteCitiesArr= JSON.parse(localStorage.getItem("favo")) || [];
+var cityObj={}; 
+
+editFavoriteListEl.addEventListener("click",function(event){
+    event.preventDefault();
+    favoriteListEl.innerHTML="";
+    picutesContainer.style.display="none";
+    eventsEl.style.display="none";
+    weatherEl.style.display="none";
+    favoriteListEl.style.display="flex";
+    for (var i=0; i<favoriteCitiesArr.length; i++){
+        $(favoriteListEl).append(`
+            <div id="favoContainer">
+            <div class="favoriteCities" style="padding: 0px 20px;">
+                <h3 style="text-align: center;">${favoriteCitiesArr[i].name}</h3>
+                <img class="favoriteCityPictures" id="picture${i}" src="${favoriteCitiesArr[i].picture}" width="200" height="200"/>
+            </div>
+        `)
+    }
+})
 
 
+
+addToFavoriteEl.addEventListener("click",function(event){
+    event.preventDefault();
+    var exist=false;
+    if(favoriteCitiesArr.length==0 && JSON.stringify(cityObj).length!=2){
+        favoriteCitiesArr.push(cityObj);
+        localStorage.setItem("favo",JSON.stringify(favoriteCitiesArr));
+        console.log(localStorage.getItem("favo"));
+        console.log(JSON.parse(localStorage.getItem("favo")));
+        cityObj={};
+    }
+    else if (favoriteCitiesArr.length==0 && JSON.stringify(cityObj).length ==2){
+        favoriteCitiesArr=[];
+    }
+    else{
+        for(var i=0; i<favoriteCitiesArr.length; i++){
+            if(favoriteCitiesArr[i].name == cityObj.name){
+                exist=true
+            }
+        }
+        if(!exist && JSON.stringify(cityObj).length!=2){
+            favoriteCitiesArr.push(cityObj);
+            localStorage.setItem("favo",JSON.stringify(favoriteCitiesArr));
+        }
+        cityObj={};
+    }
+})
 
 async function getPictures(){
     //event.preventDefault();
@@ -89,9 +90,7 @@ async function getPictures(){
                 return response.json();
             })
                 .then(function(data){
-                    console.log(data);
                    pictureArr=pictureArr.concat(data.results);
-                   console.log(pictureArr);
                    numberOfPictures+=pictureArr.length;
                 });
     }
@@ -110,12 +109,10 @@ function setBackgroundPicture(){
             id=i;
         }
     }
-    console.log("the most liked picture is");
-
-    mainresultEL.value="";
-    console.log(pictureArr[id]);
     url=pictureArr[id].urls.regular;
-    console.log(url);
+    if(url!=""){
+        cityObj.picture=`${url}`;
+    }
     mainresultEL.style.backgroundImage =`url('${url}')`;
     mainresultEL.style.backgroundSize = "cover";// to scale the image to cover the entire element
     mainresultEL.style.backgroundRepeat = "no-repeat";//to prevent the image from repeating.
@@ -131,10 +128,11 @@ showPicutersBtn.addEventListener("click",displayPictures);
 
 async function displayPictures(event){
     event.preventDefault();
-    mainresultEL.style.display="none";
+    //mainresultEL.style.display="none";
     picutesContainer.style.display="flex";
     eventsEl.style.display="none";
     weatherEl.style.display="none";
+    favoriteListEl.style.display="none";
     for (i=0;i<pictureArr.length;i++){
         var src = pictureArr[i].urls.regular;
         var alt = pictureArr[i].alt_description;
@@ -225,20 +223,22 @@ function displayPrevious(event){
     event.preventDefault();
     document.getElementById("Next").style.display="none";
     document.getElementById("Previous").style.display="none";
-    mainresultEL.style.display="none";
+   // mainresultEL.style.display="none";
     picutesContainer.style.display="none";
     eventsEl.style.display="flex";
     weatherEl.style.display="none";
+    favoriteListEl.style.display="none";
 });  
 
 eventDivEl.addEventListener("click",function(event){
     event.preventDefault();
     document.getElementById("Next").style.display="none";
     document.getElementById("Previous").style.display="none";
-    mainresultEL.style.display="none";
+    //mainresultEL.style.display="none";
     picutesContainer.style.display="none";
     eventsEl.style.display="block";
     weatherEl.style.display="none";
+    favoriteListEl.style.display="none";
 });  
 
 
@@ -256,7 +256,6 @@ function getEvents(){
     })
     .then(function(data){
         if(data.events.length>0){
-            console.log(data.events);
             displayEvents(data.events);
         }
         else{
@@ -314,7 +313,9 @@ function getInformation(event){
     getPictures();
     getEvents();
     citySearch();
-
+    if(citeNameEl.value!=""){
+        cityObj.name=`${citeNameEl.value}`;
+    }
 }
 
 submitEl.addEventListener("click",getInformation);
@@ -326,19 +327,21 @@ showWeatherBtn.addEventListener("click",function(event){
     event.preventDefault();
     document.getElementById("Next").style.display="none";
     document.getElementById("Previous").style.display="none";
-    mainresultEL.style.display="none";
+    //mainresultEL.style.display="none";
     picutesContainer.style.display="none";
     eventsEl.style.display="none";
     weatherEl.style.display="block";
+    favoriteListEl.style.display="none";
 })
 weatherDivEl.addEventListener("click",function(event){
     event.preventDefault();
     document.getElementById("Next").style.display="none";
     document.getElementById("Previous").style.display="none";
-    mainresultEL.style.display="none";
+    //mainresultEL.style.display="none";
     picutesContainer.style.display="none";
     eventsEl.style.display="none";
     weatherEl.style.display="block";
+    favoriteListEl.style.display="none";
 })
 const myApiKey = '0fffcdb9d9732daced94e2c5d89e2a50';
 const cityInputValue = document.getElementById('city-form');
@@ -361,8 +364,6 @@ function citySearch() {
     }
 
     let city = inputBox.value.trim();
-    console.log('city searched:', city);
-
     fetchGeoInfo(city);
 }
 
@@ -392,17 +393,13 @@ function getCurrentWeather(lat, lon) {
     
     fetch(weatherUrl)
     .then(function (response) {
-        // console.log('weather call response: ', response);
         if (!response.ok) {
-        // console.log('weather fetch response is not ok');
         throw response.json();
       }
-        // console.log('weather fetched successfully');
         return response.json();
     })
     .then(function (weatherData) {
         filterTodayWeatherData(weatherData)
-        // console.log('data from getCurrentWeather', weatherData)
     });
 }
 
@@ -413,7 +410,6 @@ function filterTodayWeatherData(weatherData){
 let dayNumber = 0
 
 function displayForecast(forecastData) { 
-//  console.log('should be the 4, 12, 20, 28, and 36 arrays', forecastData)
     let dateForcasted = forecastData.dt_txt.split(' ')[0]
     let weatherIcon = forecastData.weather[0].icon
     let temperature = forecastData.main.temp
@@ -465,7 +461,6 @@ for (let i=0; i < forecastData.length; i++){
 
         if (forecastData[i].dt_txt.split(' ')[1].slice(0,2) === '12'){
             startIndex = i
-            console.log(startIndex)
             break  // if return, it goes to array 36 because that's the last 12pm
         }
     }
