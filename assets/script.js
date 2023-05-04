@@ -224,25 +224,6 @@ function getEvents(){
         }
     });
 }
-showEventsBtn.addEventListener("click",function(event){
-    event.preventDefault();
-    document.getElementById("Next").style.display="none";
-    document.getElementById("Previous").style.display="none";
-    mainresultEL.style.display="none";
-    picutesContainer.style.display="none";
-    eventsEl.style.display="flex";
-    weatherEl.style.display="none";
-});  
-
-eventDivEl.addEventListener("click",function(event){
-    event.preventDefault();
-    document.getElementById("Next").style.display="none";
-    document.getElementById("Previous").style.display="none";
-    mainresultEL.style.display="none";
-    picutesContainer.style.display="none";
-    eventsEl.style.display="block";
-    weatherEl.style.display="none";
-});  
 
 function displayEvents(eventsArr){
     

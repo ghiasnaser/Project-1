@@ -191,7 +191,7 @@ img.cityPictures:hover{
     border-radius: 10%;
 
 }
-#buttonsContainer{
+#eventsContainer{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -211,3 +211,4 @@ img.cityPictures:hover{
     transform: scale(1.01);
     filter: drop-shadow(0 0 1rem rgb(249, 234, 149));
 }
+
