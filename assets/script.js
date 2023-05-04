@@ -19,6 +19,7 @@
 // addFavorites()           Adds favorites as an array to local storage
 // displayItems()           Displays items from local storage
 // clearStorage()           Clears items from local storage
+
 // // Psuedocode
 //
 // Variables
@@ -45,6 +46,7 @@ const accessAPIKey="EaQ9t1Sjw17W6zf0jNbxcojnup5AueopgWzyReTuDfY";
 const eventsAPIKey="6K5ULLZPGGNE7POPJW7W";
 const openTripAPIKey="5ae2e3f221c38a28845f05b637c4300ff4f0815f5d43b69a2bb28c20";
 //const tripAdvisorAPIKey="0A0E1A2DD5B64A41B5BA8540C9D8DA1B";
+
 const clientAPIID=" MzM0MDk3NzF8MTY4MzAxMDIzMi43MjgzMDk";
 const theAppSecret="635f720cbf32b9dc9216edb636426e129a80319eda0f6f48fa9692dacf60371b -";
 //const secretAPIKey="u1vEN6z6jphcPkL-SJYm0HT3wCva0eGs6Anydi2p95Y";
@@ -53,6 +55,7 @@ const openweatherAPIKey="dac838d30631fe359fde731b09d63ae8";
 const count = 50;
 const citeNameEl=document.getElementById("city-to-search");
 const inputEl=document.getElementById("city-form");
+
 const submitEl=document.getElementById("submit");
 const picutesContainer=document.getElementById("pictures");
 const cityPicutreEl=document.querySelector(".cityPictures");
@@ -71,9 +74,11 @@ var pictureArr=[];
 var isSubmit=false;
 
 
+
 async function getPictures(){
     //event.preventDefault();
     pictureArr=[];
+
     numberOfPictures=0;
     currentPictureIndex=0;
     var query=citeNameEl.value;
@@ -106,6 +111,7 @@ function setBackgroundPicture(){
         }
     }
     console.log("the most liked picture is");
+
     mainresultEL.value="";
     console.log(pictureArr[id]);
     url=pictureArr[id].urls.regular;
@@ -133,6 +139,7 @@ async function displayPictures(event){
         var src = pictureArr[i].urls.regular;
         var alt = pictureArr[i].alt_description;
         $(picutesContainer).append(`<img class="cityPictures" id="picture${i}" src="${src}" width="300" height="300" alt="${alt}" style="display: none;"/>`);
+
     }
     for (var j=currentPictureIndex; j<5 ;j++){
         document.getElementById("picture"+j).style.display="block";
@@ -213,6 +220,7 @@ function displayPrevious(event){
     
  }
 
+
  showEventsBtn.addEventListener("click",function(event){
     event.preventDefault();
     document.getElementById("Next").style.display="none";
@@ -238,6 +246,7 @@ function getEvents(){
     //event.preventDefault();
     $(eventsEl).value="";
     eventsArr=[];
+
     var query=citeNameEl.value;
     var cityName=query.replace(/\s+/g, '+');
     var url=`https://api.seatgeek.com/2/events?venue.city=${cityName}&client_id=${clientAPIID}`;
@@ -255,6 +264,7 @@ function getEvents(){
         }
     });
 }
+
 
 function displayEvents(eventsArr){
     
@@ -304,6 +314,7 @@ function getInformation(event){
     getPictures();
     getEvents();
     citySearch();
+
 }
 
 submitEl.addEventListener("click",getInformation);
@@ -329,7 +340,6 @@ weatherDivEl.addEventListener("click",function(event){
     eventsEl.style.display="none";
     weatherEl.style.display="block";
 })
-
 const myApiKey = '0fffcdb9d9732daced94e2c5d89e2a50';
 const cityInputValue = document.getElementById('city-form');
 
@@ -338,6 +348,7 @@ const cityInputValue = document.getElementById('city-form');
 
 function citySearch() {
     //event.preventDefault();
+
     document.getElementById("day-one").value="";
     document.getElementById("day-two").value="";
     document.getElementById("day-three").value="";

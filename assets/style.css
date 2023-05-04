@@ -12,17 +12,22 @@ html {
 }
 img.cityPictures:hover{
 
+    width: 500px;
+    height: 500px;
+
 }
 #pictures{
     display: flex;
     flex-direction: row;
     justify-content: center;
+
 }
 
 #hero {
     width: 100%;
     height: 60vh;
     background: url("./images/hero.jpg") center center;
+
     background-size: cover;
     position: relative;
     z-index: 1;
@@ -47,6 +52,7 @@ img.cityPictures:hover{
     background-color:  #ff5821;
     color: white;
     text-align: center;
+
   }
   #hero h1 {
     margin: 0 0 10px 0;
@@ -74,6 +80,7 @@ img.cityPictures:hover{
 
   }
 
+
   .searchResults .content {
     padding: 30px;
     background: #ff5821;
@@ -81,6 +88,7 @@ img.cityPictures:hover{
     color: #fff;
 
   }
+
 
   .searchResults .content h3 {
     font-weight: 700;
@@ -213,3 +221,4 @@ img.cityPictures:hover{
     transform: scale(1.01);
     filter: drop-shadow(0 0 1rem rgb(249, 234, 149));
 }
+
