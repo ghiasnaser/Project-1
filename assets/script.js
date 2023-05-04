@@ -38,14 +38,30 @@ editFavoriteListEl.addEventListener("click",function(event){
     favoriteListEl.style.display="flex";
     for (var i=0; i<favoriteCitiesArr.length; i++){
         $(favoriteListEl).append(`
-            <div id="favoContainer">
-            <div class="favoriteCities" style="padding: 0px 20px;">
-                <h3 style="text-align: center;">${favoriteCitiesArr[i].name}</h3>
-                <img class="favoriteCityPictures" id="picture${i}" src="${favoriteCitiesArr[i].picture}" width="200" height="200"/>
+            <div id="favoContainer${i}" calss="saved">
+                <div class="favoriteCities" style="padding: 0px 20px;">
+                    <h3 class="cityName" style="text-align: center;">${favoriteCitiesArr[i].name}</h3>
+                    <img class="favoriteCityPictures" id="picture${i}" src="${favoriteCitiesArr[i].picture}" width="200" height="200"/>
+                    <br>
+                    <button id="${i}" class="btn btn-primary deletefavorites" type="button">Remove</button>
+                </div>
             </div>
         `)
+        document.getElementById(`${i}`).addEventListener("click",function(){
+            const elementID=this.id;
+            deletCity(elementID);
+        });
     }
 })
+
+function deletCity(elementID){
+    const citytoremove=document.getElementById(`favoContainer${elementID}`);
+    console.log(citytoremove);
+    citytoremove.remove();
+    favoriteCitiesArr.splice(elementID, 1);
+    localStorage.setItem("favo",JSON.stringify(favoriteCitiesArr));
+}
+    
 
 
 
@@ -309,7 +325,10 @@ function displayEvents(eventsArr){
 
 function getInformation(event){
     event.preventDefault();
-   // getDescription();
+    picutesContainer.style.display="none";
+    eventsEl.style.display="none";
+    weatherEl.style.display="none";
+    favoriteListEl.style.display="none";
     getPictures();
     getEvents();
     citySearch();
