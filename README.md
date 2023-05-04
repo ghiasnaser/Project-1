@@ -22,11 +22,12 @@
 
 The images below will display what the application looks like:
 ![vacation planner website main](/assets/images/main.jpg)
-![ ](/assets/images/searched-city%20background-image.jpg)
+![search results ](/assets/images/search-results.jpg)
 (full image not screenshoted to showcase placement of the image)
-![vacation planner website main](/assets/images/picture-results.jpg)
-![vacation planner website main](/assets/images/events%20results.jpg)
-![vacation planner website main](/assets/images/weather%20results.jpg)
+![pictures results](/assets/images/pictures-results.jpg)
+![events results](/assets/images/events-results.jpg)
+![weather results](/assets/images/weather-results.jpg)
+![favorites list](/assets/images/favorites-list.jpg)
 
 Here is the deployed webpage: https://ghiasnaser.github.io/Project-1/  
 Here is the github repo link: https://github.com/ghiasnaser/Project-1.git
