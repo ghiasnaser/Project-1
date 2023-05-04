@@ -144,7 +144,6 @@ showPicutersBtn.addEventListener("click",displayPictures);
 
 async function displayPictures(event){
     event.preventDefault();
-    //mainresultEL.style.display="none";
     picutesContainer.style.display="flex";
     eventsEl.style.display="none";
     weatherEl.style.display="none";
@@ -152,7 +151,7 @@ async function displayPictures(event){
     for (i=0;i<pictureArr.length;i++){
         var src = pictureArr[i].urls.regular;
         var alt = pictureArr[i].alt_description;
-        $(picutesContainer).append(`<img class="cityPictures" id="picture${i}" src="${src}" width="300" height="300" alt="${alt}" style="display: none;"/>`);
+        $(picutesContainer).append(`<img class="cityPictures" id="picture${i}" src="${src}" width="19.5%" height="300px" alt="${alt}" style="display: none;"/>`);
 
     }
     for (var j=currentPictureIndex; j<5 ;j++){
@@ -262,7 +261,6 @@ function getEvents(){
     //event.preventDefault();
     $(eventsEl).value="";
     eventsArr=[];
-
     var query=citeNameEl.value;
     var cityName=query.replace(/\s+/g, '+');
     var url=`https://api.seatgeek.com/2/events?venue.city=${cityName}&client_id=${clientAPIID}`;
@@ -275,7 +273,7 @@ function getEvents(){
             displayEvents(data.events);
         }
         else{
-            $(eventsEl).append(`<p> there are no events will be in ${query} </p>`);
+            $(eventsEl).append(`<p style="text-align: center; font-weight: bold; font-size: 20px;"> There are no events will be in ${query} </p>`);
         }
     });
 }
