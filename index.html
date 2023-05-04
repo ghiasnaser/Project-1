@@ -40,16 +40,6 @@
     </section>
 
     <section id="main">
-
-        <div class="container">
-            <div id="favorites">
-                <h2>Your Favorites</h2>
-            </div>
-        </div>
-        
-        <div class="favoritesList">
-        </div>
-
         <section id="searchResults" class="searchResults">
             <div class="container d-flex justify-content-end">
                 <div class="row">
@@ -68,8 +58,11 @@
                                         <input type="text" id="city-to-search" placeholder="Where are you going?">
                                     </label>
                                     <input class ="submit" type="submit" id="submit">
-
                                 </form>
+                                <div class="d-grid gap-2 adding">
+                                    <button id="AddTofavorites" class="btn btn-primary" type="button">Add The city to Favorites</button>
+                                    <button id="EditList" class="btn btn-primary" type="button">Edit The Favorites List</button>
+                                </div>
                             </div>
                         </div>
                     </div>  
@@ -103,25 +96,26 @@
                             </div>
                         </div>
                     </div>
-                    <div id="buttonsContainer">
-                           <button id="Next" style="display: none;">Next</button>
-                           <button id="Previous" style="display: none;">Previous</button>
-                       </div>
+
                 </div>
             </div>
         </section>
+        <div id="favorites" style="display: none; padding-top: 10%;">
 
-        <section id="mainResult" class="fetchData section-bg">
-           
-        </section>
+        </div>
+        <div id="buttonsContainer" style="padding-top: 10%;">
+            <button id="Next" style="display: none;">Next</button>
+            <button id="Previous" style="display: none;">Previous</button>
+        </div>
         <div id="pictures"  style="display: none;">
+            
 
         </div>
         <div id="eventsContainer" style="display: none;">
 
         </div>
 
-        <div id="WeatherContainer" style="display: none;">
+        <div id="WeatherContainer" style="display: none; padding-top: 0;">
             <div id="five-day-forecast" class="column margin">
                     <section id="day-one" class="days center background-color border">
 
