@@ -31,6 +31,8 @@ var cityObj={};
 
 editFavoriteListEl.addEventListener("click",function(event){
     event.preventDefault();
+    document.getElementById("Next").style.display="none";
+    document.getElementById("Previous").style.display="none";
     favoriteListEl.innerHTML="";
     picutesContainer.style.display="none";
     eventsEl.style.display="none";
